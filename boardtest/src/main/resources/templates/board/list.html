@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<style>
+	a:link {
+		color: black;
+		text-decoration: none;
+	}
+	a:visited {
+		color: black;
+		text-decoration: none;
+	}
+	.board_table {
+		font-size: 13px;
+		width: 100%;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+	}
+	.board_table th {
+		text-align: center;
+	}
+	.th_num{
+		width : 50px;
+		text-align:center;
+	}
+
+	.th_subject{
+		width : 400px;
+		text-align:center;
+	}
+
+	.th_regDt{
+		width : 200px;
+		text-align:right;
+	}
+
+	.td_num{
+		width : 50px;
+		text-align:center;
+	}
+
+	.td_subject{
+		width : 400px;
+		text-aligh:center;
+	}
+	.td_regDt{
+		width : 200px;
+		text-align:right;
+	}
+}
+</style>
+
+<body>
+<div class="container">
+	<h1>게시글 목록</h1>
+
+	<br/><br/><br/>
+
+	<div id="mainHide">
+		<table class="board_table">
+			<thead>
+			<tr>
+				<th class="th_num">#</th>
+				<th class="th_subject">제목</th>
+				<th class="th_regDt">작성날짜</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="board : ${boardList}" th:object="${board}">
+				<td class="td_num" th:text="*{id}"></td>
+				<td class="td_subject">
+					<a th:href="@{/board/details/{id}(id=*{id})}" th:text="*{subject}"></a>
+				</td>
+				<td class = "td_regDt" th:text="*{#temporals.format(regDt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<a th:href="@{/board/write}">글쓰기</a>
+	</div>
+</div>
+<br/>
+
+</body>
+</html>

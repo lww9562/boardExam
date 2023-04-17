@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<style>
+	input{
+		width : 80%;
+	}
+	textarea {
+		width : 80%;
+		height : 200px;
+	}
+</style>
+<html xmlns:th="http://www.thymeleaf.org">
+<form method="post" th:action="@{/board/write}" th:object="${boardForm}">
+	<dl>
+		<dt>제목</dt>
+		<dd>
+			<input type="text" name="subject" th:field="*{subject}">
+			<div th:each="err : ${#fields.errors('subject')}" th:text="${err}"></div>
+		</dd>
+	</dl>
+	<dl>
+		<dt>내용</dt>
+		<dd>
+			<textarea name="content" th:field="*{content}"></textarea>
+			<div th:each="err : ${#fields.errors('content')}" th:text="${err}"></div>
+		</dd>
+	</dl>
+	<button type="submit">작성하기</button>
+</form>
+</html>
